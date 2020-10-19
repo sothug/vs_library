@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------
 --------------------- Copyright (c) samisalreadytaken -------------------
---- v0.1.1 --------------------------------------------------------------
+--- v0.1.2 --------------------------------------------------------------
 
-local VER = "v0.1.1"
+local VER = "v0.1.2"
 
 if not _VS then
 	_VS = {}
@@ -509,6 +509,21 @@ function VS.VectorsAreEqual( a, b, tolerance )
 	return ( x <= tolerance and
 	         y <= tolerance and
 	         z <= tolerance )
+end
+
+function VS.IsPointInBox( vec, min, max )
+
+	return ( vec.x >= min.x and vec.x <= max.x and
+	         vec.y >= min.y and vec.y <= max.y and
+	         vec.z >= min.z and vec.z <= max.z )
+end
+
+function VS.IsBoxIntersectingBox( min1, max1, min2, max2 )
+
+	if     ( min1.x > max2.x ) or ( max1.x < min2.x ) then return false
+	elseif ( min1.y > max2.y ) or ( max1.y < min2.y ) then return false
+	elseif ( min1.z > max2.z ) or ( max1.z < min2.z ) then return false
+	else return true end
 end
 
 -------------------------------------------------------------------------
